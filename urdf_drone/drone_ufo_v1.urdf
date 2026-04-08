@@ -18,7 +18,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="2.000"/>
-      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+      <inertia ixx="0.03" ixy="0" ixz="0" iyy="0.055" iyz="0" izz="0.03"/></inertial>
       <visual>
         <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
         <geometry>
@@ -42,6 +42,8 @@
     <child link="sphere_link"/>
     <origin xyz="0.000000 0.000000 0.010000" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
+    <limit effort="2.0" velocity="3.0"/>
+  <dynamics damping="0.2" friction="0.05"/>
   </joint>
 
 
@@ -70,7 +72,7 @@
     <parent link="leg_1_shell_link"/>
     <child link="leg_1_link"/>
     <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="0 0 1"/>
     <limit lower="0.0" upper="0.04" effort="300.0" velocity="0.2"/>
   </joint>
 
@@ -100,7 +102,7 @@
     <parent link="leg_2_shell_link"/>
     <child link="leg_2_link"/>
     <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="0 0 1"/>
     <limit lower="0.0" upper="0.04" effort="300.0" velocity="0.2"/>
   </joint>
 
@@ -130,7 +132,7 @@
     <parent link="leg_3_shell_link"/>
     <child link="leg_3_link"/>
     <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="0 0 1"/>
     <limit lower="0.0" upper="0.04" effort="300.0" velocity="0.2"/>
   </joint>
 
@@ -160,7 +162,7 @@
     <parent link="leg_4_shell_link"/>
     <child link="leg_4_link"/>
     <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="0 0 1"/>
     <limit lower="0.0" upper="0.04" effort="300.0" velocity="0.2"/>
   </joint>
 

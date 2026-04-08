@@ -7,7 +7,8 @@ from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitut
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
-
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, SetEnvironmentVariable, ExecuteProcess
+from launch.event_handlers import OnProcessExit
 
 def generate_launch_description():
     # Create the launch configuration variables
@@ -105,7 +106,31 @@ def generate_launch_description():
             parameters=[params],
             remappings=[('/cmd_vel_nav', '/cmd_vel')],
             arguments=[])
- 
+        # Spawn controllers after robot is spawned
+    joint_state_broadcaster_spawner = ExecuteProcess(
+        cmd=['ros2', 'run', 'controller_manager', 'spawner', 'joint_state_broadcaster',  '--controller-manager', '/controller_manager',
+        '--controller-manager-timeout', '120'],
+        output='screen'
+    )
+
+    sphere_controller_spawner = ExecuteProcess(
+        cmd=['ros2', 'run', 'controller_manager', 'spawner', 'sphere_velocity_controller',  '--controller-manager', '/controller_manager',
+        '--controller-manager-timeout', '120'],
+        output='screen'
+    )
+
+    propellers_controller_spawner = ExecuteProcess(
+        cmd=['ros2', 'run', 'controller_manager', 'spawner', 'propellers_velocity_controller',  '--controller-manager', '/controller_manager',
+        '--controller-manager-timeout', '120'],
+        output='screen'
+    )
+
+    legs_controller_spawner = ExecuteProcess(
+        cmd=['ros2', 'run', 'controller_manager', 'spawner', 'legs_position_controller',  '--controller-manager', '/controller_manager',
+        '--controller-manager-timeout', '120'],
+        output='screen'
+    )
+
     # slam_toolbox = IncludeLaunchDescription(
     #     PythonLaunchDescriptionSource([
     #         PathJoinSubstitution([
@@ -179,7 +204,20 @@ def generate_launch_description():
     # Launch Gazebo
     ld.add_action(gz_sim)
     ld.add_action(gz_spawn_entity)
+     # Sequence startup so controller_manager is ready
+    ld.add_action(RegisterEventHandler(
+        OnProcessExit(
+            target_action=gz_spawn_entity,
+            on_exit=[joint_state_broadcaster_spawner]
+        )
+    ))
     ld.add_action(gz_ros2_bridge)
+    ld.add_action(RegisterEventHandler(
+        OnProcessExit(
+            target_action=joint_state_broadcaster_spawner,
+            on_exit=[sphere_controller_spawner, propellers_controller_spawner, legs_controller_spawner]
+        )
+    ))
     # ld.add_action(joint_state_publisher_node)
     # Launch Robot State Publisher
     ld.add_action(start_robot_state_publisher_cmd)
