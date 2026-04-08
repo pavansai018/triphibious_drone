@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="WheeledDrone">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="1.64400379731868E-17 -1.26084744887352E-17 1.14301458280935E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.126391295574995" />
+      <inertia
+        ixx="0.000698367835987621"
+        ixy="8.48183245293616E-22"
+        ixz="-1.34811052800537E-19"
+        iyy="0.00216960444370969"
+        iyz="5.0047860182116E-22"
+        izz="0.0014717631432146" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="left_wheel_link">
+    <inertial>
+      <origin
+        xyz="-5.157E-17 1.6396E-16 -0.005"
+        rpy="0 0 0" />
+      <mass
+        value="0.45579" />
+      <inertia
+        ixx="0.015748"
+        ixy="2.0835E-17"
+        ixz="1.8875E-19"
+        iyy="0.015748"
+        iyz="-2.0652E-21"
+        izz="0.031488" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/left_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.24 0 0"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="right_wheel_link">
+    <inertial>
+      <origin
+        xyz="-4.913E-17 2.6257E-16 -0.005"
+        rpy="0 0 0" />
+      <mass
+        value="0.45579" />
+      <inertia
+        ixx="0.015748"
+        ixy="1.5999E-17"
+        ixz="1.8875E-19"
+        iyy="0.015748"
+        iyz="-2.0652E-21"
+        izz="0.031488" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/right_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.25 0 0"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="propeller_front_left_link">
+    <inertial>
+      <origin
+        xyz="0.13435 -0.13435 -0.014657"
+        rpy="0 0 0" />
+      <mass
+        value="0.044196" />
+      <inertia
+        ixx="7.0715E-05"
+        ixy="-1.3141E-13"
+        ixz="-3.5232E-19"
+        iyy="7.0715E-05"
+        iyz="1.8554E-19"
+        izz="0.0001389" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/propeller_front_left_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/propeller_front_left_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="propeller_front_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.135 -0.135 0.009"
+      rpy="3.1416 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="propeller_front_left_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="propeller_front_right_link">
+    <inertial>
+      <origin
+        xyz="0.13435 0.13435 0.012157"
+        rpy="0 0 0" />
+      <mass
+        value="0.044196" />
+      <inertia
+        ixx="7.0715E-05"
+        ixy="1.3141E-13"
+        ixz="3.7002E-19"
+        iyy="7.0715E-05"
+        iyz="1.9535E-19"
+        izz="0.0001389" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/propeller_front_right_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/propeller_front_right_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="propeller_front_right_joint"
+    type="continuous">
+    <origin
+      xyz="-0.135 -0.135 0.009"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="propeller_front_right_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="propeller_back_left_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.044196" />
+      <inertia
+        ixx="7.0715E-05"
+        ixy="1.3141E-13"
+        ixz="3.3172E-19"
+        iyy="7.0715E-05"
+        iyz="2.0543E-19"
+        izz="0.0001389" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/propeller_back_left_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/propeller_back_left_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="propeller_back_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.135 0.135 0.009"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="propeller_back_left_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="propeller_back_right_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.044196" />
+      <inertia
+        ixx="7.0715E-05"
+        ixy="-1.3141E-13"
+        ixz="-3.1263E-19"
+        iyy="7.0715E-05"
+        iyz="2.3326E-19"
+        izz="0.0001389" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/propeller_back_right_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/propeller_back_right_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="propeller_back_right_joint"
+    type="continuous">
+    <origin
+      xyz="-0.135 0.135 0.009"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="propeller_back_right_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="100" />
+  </joint>
+</robot>

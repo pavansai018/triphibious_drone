@@ -1,0 +1,33 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    sphere_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    propellers_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    legs_position_controller:
+      type: position_controllers/JointGroupPositionController
+
+sphere_velocity_controller:
+  ros__parameters:
+    joints: [sphere_joint]
+    command_interfaces: [velocity]
+    state_interfaces: [position, velocity]
+
+propellers_velocity_controller:
+  ros__parameters:
+    joints: [prop_1_joint, prop_2_joint, prop_3_joint, prop_4_joint]
+    command_interfaces: [velocity]
+    state_interfaces: [position, velocity]
+
+legs_position_controller:
+  ros__parameters:
+    joints: [leg_1_joint, leg_2_joint, leg_3_joint, leg_4_joint]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]

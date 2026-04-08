@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<robot name="drone_ufo_step_based">
+
+  <link name="base_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="2.000"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/base_main.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/base_main.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <link name="sphere_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.800"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/sphere_from_step.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/sphere_from_step.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="sphere_joint" type="continuous"> 
+    <parent link="base_link"/>
+    <child link="sphere_link"/>
+    <origin xyz="0.000000 0.000000 0.010000" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+    <link name="leg_1_shell_link"> 
+        <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.030"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+        <visual><origin xyz="0 0 -0.025000" rpy="0 0 0"/><geometry><cylinder radius="0.016000" length="0.050000"/></geometry></visual>
+        <collision><origin xyz="0 0 -0.025000" rpy="0 0 0"/><geometry><cylinder radius="0.016000" length="0.050000"/></geometry></collision>
+    </link>
+
+
+  <joint name="leg_1_shell_fixed" type="fixed"> 
+    <parent link="base_link"/>
+    <child link="leg_1_shell_link"/>
+    <origin xyz="0.068666 -0.075738 -0.005000" rpy="0 0 0"/>
+  </joint>
+
+
+  <link name="leg_1_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.250"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 -0.042500" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/leg_1.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 -0.042500" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/leg_1.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="leg_1_joint" type="prismatic"> 
+    <parent link="leg_1_shell_link"/>
+    <child link="leg_1_link"/>
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0.0" upper="0.04" effort="300.0" velocity="0.2"/>
+  </joint>
+
+
+    <link name="leg_2_shell_link"> 
+        <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.030"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+        <visual><origin xyz="0 0 -0.025000" rpy="0 0 0"/><geometry><cylinder radius="0.016000" length="0.050000"/></geometry></visual>
+        <collision><origin xyz="0 0 -0.025000" rpy="0 0 0"/><geometry><cylinder radius="0.016000" length="0.050000"/></geometry></collision>
+    </link>
+
+
+  <joint name="leg_2_shell_fixed" type="fixed"> 
+    <parent link="base_link"/>
+    <child link="leg_2_shell_link"/>
+    <origin xyz="-0.075738 0.068666 -0.005000" rpy="0 0 0"/>
+  </joint>
+
+
+  <link name="leg_2_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.250"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 -0.042500" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/leg_2.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 -0.042500" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/leg_2.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="leg_2_joint" type="prismatic"> 
+    <parent link="leg_2_shell_link"/>
+    <child link="leg_2_link"/>
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0.0" upper="0.04" effort="300.0" velocity="0.2"/>
+  </joint>
+
+
+    <link name="leg_3_shell_link"> 
+        <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.030"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+        <visual><origin xyz="0 0 -0.025000" rpy="0 0 0"/><geometry><cylinder radius="0.016000" length="0.050000"/></geometry></visual>
+        <collision><origin xyz="0 0 -0.025000" rpy="0 0 0"/><geometry><cylinder radius="0.016000" length="0.050000"/></geometry></collision>
+    </link>
+
+
+  <joint name="leg_3_shell_fixed" type="fixed"> 
+    <parent link="base_link"/>
+    <child link="leg_3_shell_link"/>
+    <origin xyz="0.075738 0.068666 -0.005000" rpy="0 0 0"/>
+  </joint>
+
+
+  <link name="leg_3_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.250"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 -0.042500" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/leg_3.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 -0.042500" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/leg_3.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="leg_3_joint" type="prismatic"> 
+    <parent link="leg_3_shell_link"/>
+    <child link="leg_3_link"/>
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0.0" upper="0.04" effort="300.0" velocity="0.2"/>
+  </joint>
+
+
+    <link name="leg_4_shell_link"> 
+        <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.030"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+        <visual><origin xyz="0 0 -0.025000" rpy="0 0 0"/><geometry><cylinder radius="0.016000" length="0.050000"/></geometry></visual>
+        <collision><origin xyz="0 0 -0.025000" rpy="0 0 0"/><geometry><cylinder radius="0.016000" length="0.050000"/></geometry></collision>
+    </link>
+
+
+  <joint name="leg_4_shell_fixed" type="fixed"> 
+    <parent link="base_link"/>
+    <child link="leg_4_shell_link"/>
+    <origin xyz="-0.075738 -0.068666 -0.005000" rpy="0 0 0"/>
+  </joint>
+
+
+  <link name="leg_4_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.250"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 -0.042500" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/leg_4.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 -0.042500" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/leg_4.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="leg_4_joint" type="prismatic"> 
+    <parent link="leg_4_shell_link"/>
+    <child link="leg_4_link"/>
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0.0" upper="0.04" effort="300.0" velocity="0.2"/>
+  </joint>
+
+
+  <link name="prop_1_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.050"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/prop_1.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/prop_1.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="prop_1_joint" type="continuous"> 
+    <parent link="base_link"/>
+    <child link="prop_1_link"/>
+    <origin xyz="-0.176777 0.176777 0.045049" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+  <link name="prop_2_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.050"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/prop_2.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/prop_2.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="prop_2_joint" type="continuous"> 
+    <parent link="base_link"/>
+    <child link="prop_2_link"/>
+    <origin xyz="-0.176777 -0.176777 0.045049" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+  <link name="prop_3_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.050"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/prop_3.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/prop_3.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="prop_3_joint" type="continuous"> 
+    <parent link="base_link"/>
+    <child link="prop_3_link"/>
+    <origin xyz="0.176717 -0.176697 0.045549" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+  <link name="prop_4_link"> 
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.050"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+        <visual><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/prop_4.stl" scale="0.001 0.001 0.001"/></geometry></visual>
+        <collision><origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0"/><geometry><mesh filename="file:///home/pavan/Downloads/SUTD/DesignScience/cad/quadcopter-drone-frame-design-with-dome-enclosure-1.snapshot.7/drone_ufo_description/meshes/prop_4.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+
+  <joint name="prop_4_joint" type="continuous"> 
+    <parent link="base_link"/>
+    <child link="prop_4_link"/>
+    <origin xyz="0.175845 0.175008 0.045549" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+</robot>
