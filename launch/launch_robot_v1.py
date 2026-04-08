@@ -70,7 +70,8 @@ def generate_launch_description():
         executable="parameter_bridge",
         arguments=[
                 # ROS -> GZ
-            "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
+            "/triphibious_robot/gazebo/command/twist@geometry_msgs/msg/Twist@gz.msgs.Twist",
+            "/triphibious_robot/enable@std_msgs/msg/Bool@gz.msgs.Boolean",
 
             # GZ -> ROS
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
@@ -115,12 +116,6 @@ def generate_launch_description():
 
     sphere_controller_spawner = ExecuteProcess(
         cmd=['ros2', 'run', 'controller_manager', 'spawner', 'sphere_velocity_controller',  '--controller-manager', '/controller_manager',
-        '--controller-manager-timeout', '120'],
-        output='screen'
-    )
-
-    propellers_controller_spawner = ExecuteProcess(
-        cmd=['ros2', 'run', 'controller_manager', 'spawner', 'propellers_velocity_controller',  '--controller-manager', '/controller_manager',
         '--controller-manager-timeout', '120'],
         output='screen'
     )
@@ -215,7 +210,7 @@ def generate_launch_description():
     ld.add_action(RegisterEventHandler(
         OnProcessExit(
             target_action=joint_state_broadcaster_spawner,
-            on_exit=[sphere_controller_spawner, propellers_controller_spawner, legs_controller_spawner]
+            on_exit=[sphere_controller_spawner, legs_controller_spawner]
         )
     ))
     # ld.add_action(joint_state_publisher_node)

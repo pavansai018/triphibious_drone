@@ -66,7 +66,7 @@
 
             <uri>model://city_terrain/materials/textures/city_terrain.jpg</uri>
             <size>500 500 75</size>
-            <pos>40 -20 -5</pos>
+            <pos>40 -20 -9</pos>
           </heightmap>
         </geometry>
       </visual>

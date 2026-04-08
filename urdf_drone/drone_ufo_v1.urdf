@@ -259,27 +259,6 @@
       <state_interface name="velocity"/>
     </joint>
 
-    <!-- props -->
-    <joint name="prop_1_joint">
-      <command_interface name="velocity"/>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-    <joint name="prop_2_joint">
-      <command_interface name="velocity"/>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-    <joint name="prop_3_joint">
-      <command_interface name="velocity"/>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-    <joint name="prop_4_joint">
-      <command_interface name="velocity"/>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
   </ros2_control>
 
   <gazebo>
@@ -287,4 +266,120 @@
       <parameters>/home/pavan/Downloads/SUTD/DesignScience/ds_ws/src/triphibious_robot/config/controllers.yaml</parameters>
     </plugin>
   </gazebo>
+  <gazebo>
+    <plugin filename="libgz-sim8-multicopter-motor-model-system.so" name="gz::sim::systems::MulticopterMotorModel">
+      <robotNamespace>triphibious_robot</robotNamespace>
+      <jointName>prop_1_joint</jointName>
+      <linkName>prop_1_link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1200.0</maxRotVelocity>
+      <motorConstant>2.5e-05</motorConstant>
+      <momentConstant>0.016754</momentConstant>
+      <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
+      <actuator_number>0</actuator_number>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>motor_speed/0</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="libgz-sim8-multicopter-motor-model-system.so" name="gz::sim::systems::MulticopterMotorModel">
+      <robotNamespace>triphibious_robot</robotNamespace>
+      <jointName>prop_2_joint</jointName>
+      <linkName>prop_2_link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1200.0</maxRotVelocity>
+      <motorConstant>2.5e-05</motorConstant>
+      <momentConstant>0.016754</momentConstant>
+      <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
+      <actuator_number>1</actuator_number>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>motor_speed/1</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="libgz-sim8-multicopter-motor-model-system.so" name="gz::sim::systems::MulticopterMotorModel">
+      <robotNamespace>triphibious_robot</robotNamespace>
+      <jointName>prop_3_joint</jointName>
+      <linkName>prop_3_link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1200.0</maxRotVelocity>
+      <motorConstant>2.5e-05</motorConstant>
+      <momentConstant>0.016754</momentConstant>
+      <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
+      <actuator_number>2</actuator_number>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>motor_speed/2</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin filename="libgz-sim8-multicopter-motor-model-system.so" name="gz::sim::systems::MulticopterMotorModel">
+      <robotNamespace>triphibious_robot</robotNamespace>
+      <jointName>prop_4_joint</jointName>
+      <linkName>prop_4_link</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1200.0</maxRotVelocity>
+      <motorConstant>2.5e-05</motorConstant>
+      <momentConstant>0.016754</momentConstant>
+      <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
+      <actuator_number>3</actuator_number>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>motor_speed/3</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="libgz-sim8-multicopter-control-system.so" name="gz::sim::systems::MulticopterVelocityControl">
+      <robotNamespace>triphibious_robot</robotNamespace>
+      <commandSubTopic>gazebo/command/twist</commandSubTopic>
+      <enableSubTopic>enable</enableSubTopic>
+      <comLinkName>base_link</comLinkName>
+      <velocityGain>6 6 10</velocityGain>
+      <attitudeGain>4 4 2</attitudeGain>
+      <angularRateGain>0.7 0.7 0.7</angularRateGain>
+      <maximumLinearAcceleration>1 1 2</maximumLinearAcceleration>
+      <maximumLinearVelocity>5 5 5</maximumLinearVelocity>
+      <maximumAngularVelocity>3 3 3</maximumAngularVelocity>
+      <rotorConfiguration>
+        <rotor>
+          <jointName>prop_1_joint</jointName>
+          <forceConstant>2.5e-05</forceConstant>
+          <momentConstant>1.6754e-2</momentConstant>
+          <direction>1</direction>
+        </rotor>
+        <rotor>
+          <jointName>prop_2_joint</jointName>
+          <forceConstant>2.5e-05</forceConstant>
+          <momentConstant>1.6754e-2</momentConstant>
+          <direction>1</direction>
+        </rotor>
+        <rotor>
+          <jointName>prop_3_joint</jointName>
+          <forceConstant>2.5e-05</forceConstant>
+          <momentConstant>1.6754e-2</momentConstant>
+          <direction>-1</direction>
+        </rotor>
+        <rotor>
+          <jointName>prop_4_joint</jointName>
+          <forceConstant>2.5e-05</forceConstant>
+          <momentConstant>1.6754e-2</momentConstant>
+          <direction>-1</direction>
+        </rotor>
+      </rotorConfiguration>
+    </plugin>
+  </gazebo>
+
 </robot>
